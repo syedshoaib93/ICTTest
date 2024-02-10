@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search Vehicle</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+     <h1>Heavy Vehicle Renting Service</h1>
+    <nav>
+      <a href="add.html">Add Vehicle</a>
+	  <a href="search.html">Search Vehicle</a>
+      <a href="delete.html">Delete Vehicle</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </header>
+  
+  <main>
+    <h2>Added Vehicles</h2>
+		<img src="image.jpg" alt="Heavy Vehicle" class="center-image">
+    <table id="vehicleTable">
+      <thead>
+        <tr>
+          <th>Vehicle Name</th>
+          <th>Vehicle Type</th>
+          <th>Rental Price</th>
+          <th>Availability</th>
+        </tr>
+      </thead>
+      <tbody id="vehicleList">
+        <!-- Sample vehicle information -->
+        <tr>
+          <td>Truck</td>
+          <td>Heavy Truck</td>
+          <td>500</td>
+          <td>Available</td>
+        </tr>
+        <tr>
+          <td>Bulldozer</td>
+          <td>Construction Equipment</td>
+          <td>1000</td>
+          <td>Not Available</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h2>Search Vehicle</h2>
+    <input type="text" id="searchInput" placeholder="Search by Vehicle Name">
+    <button onclick="searchVehicle()">Search</button>
+    <button onclick="resetSearch()">Reset</button>
+  </main>
+  
+  <footer>
+    <p>&copy; 2024 Heavy Vehicle Renting Service</p>
+  </footer>
+
+  <script>
+    function searchVehicle() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const rows = document.querySelectorAll('#vehicleList tr');
+
+      rows.forEach(row => {
+        const name = row.children[0].textContent.toLowerCase();
+        if (name.includes(input)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    function resetSearch() {
+      document.getElementById('searchInput').value = '';
+      const rows = document.querySelectorAll('#vehicleList tr');
+      rows.forEach(row => {
+        row.style.display = '';
+      });
+    }
+  </script>
+</body>
+</html>
